@@ -18,8 +18,8 @@ import openfl.net.URLRequest;
         }
     </style>
     <hbox style="width: 250px; height: 100%;" horizontalAlign="center">
-        <vbox style="width: 100%; height: 50%;" verticalAlign="center">
-            <frame text="aschaafsma.nl" height="100%" width="100%">
+        <vbox style="width: 100%; height: auto;" verticalAlign="center">
+            <frame text="aschaafsma.nl" height="auto" width="100%" style="min-height:300px;">
                 <vbox width="100%">
                     <section-header text="Onder Constructie"/>
                     <hbox width="100%" style="padding-left:5px;padding-right:5px;spacing:50px;">
@@ -32,7 +32,6 @@ import openfl.net.URLRequest;
                     <link id="link_nieuw" text="Nieuw" style="padding-left:5px;padding-right:5px;spacing:50px;" />
                     <link id="link_gh" text="Mijn Github" style="padding-left:5px;padding-right:5px;spacing:50px;" />
                     <link id="link_gt" text="Mijn Gitea" style="padding-left:5px;padding-right:5px;spacing:50px;" />
-
                 </vbox>
             </frame>
         </vbox>    
@@ -61,6 +60,7 @@ class MainView extends VBox {
             vec.y = -1;
             bitmap.y = stage.stageHeight - bitmap.height;
         }
+
         if (bitmap.y < 0){
             vec.y = 1;
             bitmap.y = 0;

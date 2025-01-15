@@ -18,5 +18,5 @@
     <assets path="assets">
         <image path="Under_construction.svg.png" id="UnderConstruction" />
     </assets>
-
+    <template path="templates" />
 </project>

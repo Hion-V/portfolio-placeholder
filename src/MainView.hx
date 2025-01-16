@@ -1,5 +1,6 @@
 package ;
 
+import openfl.display.StageScaleMode;
 import lime.math.Vector2;
 import openfl.events.Event;
 import openfl.display.BitmapData;
@@ -11,7 +12,7 @@ import openfl.Lib;
 import openfl.net.URLRequest;
 
 @:xml('
-<vbox style="padding: 5px; width: 100%; height: 100%;">
+<vbox style="padding: 5px; width: 300px; height: 500px;">
     <style>
         .button {
             font-size: 20px;
@@ -26,7 +27,7 @@ import openfl.net.URLRequest;
                         <label width="100%" text="aschaafsma.nl is onder constructie!" />
                     </hbox>
                     <hbox width="100%" style="padding-left:5px;padding-right:5px;spacing:50px;">
-                        <label width="100%" text="Ik ben momenteel bezig met een redesign van mijn portfolio website. Mijn oude is inhoudelijk out of date sinds 2019, en de nieuwe is qua ontwerp min of meer klaar maar heeft nog veel backend werk nodig." />
+                        <label width="100%" clip="false" text="Ik ben momenteel bezig met een redesign van mijn portfolio website. Mijn oude is inhoudelijk out of date sinds 2019, en de nieuwe is qua ontwerp min of meer klaar maar heeft nog veel backend werk nodig.\r\n" />
                     </hbox>
                     <link id="link_oud" text="Oud" style="padding-left:5px;padding-right:5px;spacing:50px;" />
                     <link id="link_nieuw" text="Nieuw" style="padding-left:5px;padding-right:5px;spacing:50px;" />
@@ -41,6 +42,7 @@ import openfl.net.URLRequest;
 class MainView extends VBox {
     var bitmap:Bitmap = new Bitmap();
     public function new() {
+        // Lib.current.stage.scaleMode = NO_SCALE;
         super();
         this.addEventListener(Event.ENTER_FRAME, onEnterFrame);
         var bmpd:BitmapData = Assets.getBitmapData("UnderConstruction");
@@ -53,21 +55,30 @@ class MainView extends VBox {
     var baseRes:Vector2 = new Vector2(1280,720);
     var vec:Vector2 = new Vector2(1,1);
     public function onEnterFrame(e:Event){
+        Lib.current.stage.scaleMode = SHOW_ALL;
+        trace(Lib.current.stage.contentsScaleFactor);
+        trace(Lib.current.stage.window.scale);
+        trace(Lib.application.window.scale);
+        trace(Lib.application.window.stage.scaleX);
+
+
+        trace(stage.stageWidth);
+        trace(stage.stageHeight);
         bitmap.x +=vec.x;
         bitmap.y +=vec.y;
 
-        if (bitmap.y + bitmap.height > stage.stageHeight){
+        if (bitmap.y + bitmap.height > 500){
             vec.y = -1;
-            bitmap.y = stage.stageHeight - bitmap.height;
+            bitmap.y = 500 - bitmap.height;
         }
 
         if (bitmap.y < 0){
             vec.y = 1;
             bitmap.y = 0;
         }
-        if (bitmap.x + bitmap.width > stage.stageWidth){
+        if (bitmap.x + bitmap.width > 300){
             vec.x = -1;
-            bitmap.x = stage.stageWidth - bitmap.width;
+            bitmap.x = 300 - bitmap.width;
         }
         if (bitmap.x < 0){
             vec.x = 1;
